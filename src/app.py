@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def hello():
     return jsonify({
-        'message' : 'hello_world'
+        'message' : 'hello_world - GitHub Action'
     }) 
 
 

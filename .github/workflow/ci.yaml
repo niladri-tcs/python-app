@@ -23,4 +23,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: rndockerhub/py-app:${GITHUB_SHA::6}
+          tags: rndockerhub/py-app:${{ github.sha }}
