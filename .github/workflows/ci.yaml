@@ -3,7 +3,6 @@ name: ci
 on:
   push:
     paths:
-    paths:
       - 'Dockerfile'
       - 'src/app.py'
     branches:
