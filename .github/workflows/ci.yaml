@@ -1,27 +1,12 @@
 name: ci
 
 on:
-  # [workflow_dispatch]
   push:
     paths:
       - src/**
     braches:
       - main
 
-# jobs:
-#   publish_images:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: checkout
-#         uses: actions/checkout@v4
-#       - name: build image
-#         run: |
-#           docker build ./src/ -t rndockerhub/py-app:latest
-
-#       - name: push image to docker hub
-#         run: |
-#           docker login -u rndockerhub -p ${{ secrets.DOCKERHUB_TOKEN }}
-#           docker push rndockerhub/py-app:latest
 
 jobs:
   docker:
