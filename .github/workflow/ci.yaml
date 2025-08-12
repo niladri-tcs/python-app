@@ -1,26 +1,41 @@
 name: ci
 
 on:
-  push:
-    paths:
-      - src/**
-    braches:
-      - main
-
+  [workflow_dispatch]
+  # push:
+  #   paths:
+  #     - src/**
+  #   braches:
+  #     - main
 
 jobs:
-  docker:
+  publish_images:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: rndockerhub/py-app:${{ github.sha }}
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build image
+        run: |
+          docker build ./src/ -t rndockerhub/py-app:latest
+
+      - name: push image to docker hub
+        run: |
+          docker login -u rndockerhub -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push rndockerhub/py-app:latest
+
+# jobs:
+#   docker:
+#     runs-on: ubuntu-latest
+#     steps:
+#       -
+#         name: Login to Docker Hub
+#         uses: docker/login-action@v3
+#         with:
+#           username: ${{ vars.DOCKERHUB_USERNAME }}
+#           password: ${{ secrets.DOCKERHUB_TOKEN }}
+#       -
+#         name: Build and push
+#         uses: docker/build-push-action@v6
+#         with:
+#           push: true
+#           tags: rndockerhub/py-app:${{ github.sha }}
