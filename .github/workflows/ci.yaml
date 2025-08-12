@@ -3,7 +3,9 @@ name: ci
 on:
   push:
     paths:
-      - src/**
+    paths:
+      - 'Dockerfile'
+      - 'src/app.py'
     branches:
       - main
 
@@ -22,5 +24,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: rndockerhub/py-app:latest
+          tags: rndockerhub/py-app:{GITHUB_SHA::6}
 
