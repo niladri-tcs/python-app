@@ -7,4 +7,5 @@ RUN pip install Flask
 
 COPY ./src /src
 
+
 CMD python3 src/app.py
