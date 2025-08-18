@@ -2,9 +2,7 @@ from flask import Flask, jsonify
 import datetime
 import socket
 
-
 app = Flask(__name__)
-
 
 @app.route('/api/v1/info')
 
@@ -25,3 +23,5 @@ def health():
 if __name__ == '__main__':
 
     app.run(host="0.0.0.0")
+
+# Changes for GitOps
